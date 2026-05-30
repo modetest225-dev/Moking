@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL SYSTEM v4.0.2</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: #050505;
+            color: #00ff33;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* شاشة التحميل عند الخروج */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 24px;
+            color: #ff3333;
+            text-align: center;
+        }
+
+        .loader {
+            border: 5px solid #222;
+            border-radius: 50%;
+            border-top: 5px solid #ff3333;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* الهيكل الأساسي */
+        header {
+            background: #111;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #00ff33;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            padding: 15px;
+            gap: 15px;
+            overflow: hidden;
+        }
+
+        /* قسم الأكواد */
+        .code-section {
+            flex: 2;
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid #00ff33;
+            padding: 15px;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            box-shadow: inset 0 0 10px rgba(0,255,51,0.2);
+        }
+
+        /* قسم التحكم والأزرار */
+        .control-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-box {
+            background: #111;
+            border: 1px solid #00ff33;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .chat-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #00ffff;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        input[type="password"] {
+            flex: 1;
+            background: #000;
+            border: 1px solid #00ff33;
+            color: #00ff33;
+            padding: 8px;
+            font-family: monospace;
+        }
+
+        /* لوحة الأزرار الكثيرة */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            overflow-y: auto;
+            flex: 1;
+            padding: 5px;
+            border: 1px dashed #00ff33;
+        }
+
+        button {
+            background: #002200;
+            color: #00ff33;
+            border: 1px solid #00ff33;
+            padding: 10px 5px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 11px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #00ff33;
+            color: #000;
+            box-shadow: 0 0 10px #00ff33;
+        }
+
+        .special-btn {
+            background: #330000;
+            color: #ff3333;
+            border-color: #ff3333;
+            font-weight: bold;
+        }
+        .special-btn:hover {
+            background: #ff3333;
+            color: #000;
+            box-shadow: 0 0 10px #ff3333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <div id="status-text">جاري تخريب جهاز الضحية بالكامل...</div>
+        <div class="loader"></div>
+    </div>
+
+    <header>💥 نظام الاختراق والتحكم المتقدم v4.0.2 💥</header>
+
+    <div class="main-container" id="mainApp">
+        
+        <div class="code-section" id="codePanel">
+            // جاري الاتصال بالسيرفر المحرك...
+            // [OK] تم اختراق جدار الحماية بنجاح.
+            // IP_TARGET: 192.168.1.105
+        </div>
+
+        <div class="control-section">
+            
+            <div class="chat-box" onclick="event.stopPropagation();">
+                <div class="chat-title">💬 الدردشة لدخول جهاز الضحية</div>
+                <div style="font-size: 12px; color: #aaa; margin-bottom: 5px;">أدخل كلمة مرور الضحية لتفعيل التجسس:</div>
+                <div class="input-group">
+                    <input type="password" id="passInput" placeholder="كلمة المرور...">
+                    <button onclick="checkPassword()">دخول</button>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;" onclick="event.stopPropagation();">
+                <button class="special-btn" style="flex: 1;" onclick="alert('تم تفعيل بروتوكول AZ')">زر التحكم AZ</button>
+                <button class="special-btn" style="flex: 1;" onclick="alert('تم تفعيل بروتوكول CV')">زر التحكم CV</button>
+            </div>
+
+            <div class="buttons-grid" id="btnGrid" onclick="event.stopPropagation();">
+                </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. توليد أزرار كثيرة جداً تلقائياً
+        const btnGrid = document.getElementById('btnGrid');
+        for (let i = 1; i <= 60; i++) {
+            let btn = document.createElement('button');
+            btn.innerText = `CMD_${1000 + i}`;
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                alert(`تم تشغيل الأمر النمطي رقم: ${1000 + i}`);
+            };
+            btnGrid.appendChild(btn);
+        }
+
+        // 2. توليد أكواد برمجية وهمية مستمرة في الخلفية
+        const codePanel = document.getElementById('codePanel');
+        const fakeCodes = [
+            "import os\nimport sys\ndef hack_victim_device():\n   bypass_firewall()",
+            "CONNECT 192.168.1.105 PORT 4444 ... SUCCESS",
+            "INJECTING TROJAN HORSE INTO SYSTEM32...",
+            "GET /admin/config.php HTTP/1.1\nHost: target.local",
+            "[-] Cracking password hashes using MD5 brute force...",
+            "[+] Access Granted to Root Directory.",
+            "DOWNLOAD_RATE: 450 MB/s -> Fetching Private_Data.zip",
+            "SPLOIT: Windows_Kernel_Exploit_2026_CVE (Active)"
+        ];
+
+        setInterval(() => {
+            let randomCode = fakeCodes[Math.floor(Math.random() * fakeCodes.length)];
+            codePanel.innerText += "\n" + randomCode;
+            codePanel.scrollTop = codePanel.scrollHeight; // النزول لأسفل تلقائياً
+        }, 1500);
+
+        // 3. فحص كلمة المرور للدردشة
+        function checkPassword() {
+            let input = document.getElementById('passInput').value;
+            if(input.trim() !== "") {
+                alert("اضغط على زر التحكم");
+            } else {
+                alert("الرجاء كتابة أي شيء أولاً!");
+            }
+        }
+
+        // 4. النقر في أي مكان آخر للخروج وتخريب الجهاز
+        document.getElementById('mainApp').addEventListener('click', function() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'flex';
+            
+            // محاكاة إغلاق المتصفح أو الخروج بعد 4 ثوانٍ من التخريب
+            setTimeout(() => {
+                document.getElementById('status-text').innerText = "تم تدمير النظام بنجاح! جاري إغلاق الصفحة...";
+                setTimeout(() => {
+                    window.close();
+                    // كخيار بديل إذا منع المتصفح الإغلاق التلقائي:
+                    document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%; font-family:monospace;'>SYSTEM CRASHED 💥</h1>";
+                }, 1500);
+            }, 3000);
+        });
+    </script>
+</body>
+                                                                     </html>
